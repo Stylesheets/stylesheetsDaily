@@ -1,0 +1,3 @@
+http://visualrinse.com/2008/09/24/how-to-build-a-simple-rss-reader-with-jquery/
+http://james.padolsey.com/javascript/cross-domain-requests-with-jquery/
+http://stackoverflow.com/questions/10299890/how-to-set-up-view-php-server-pages-in-eclipse-with-the-pdt-plugin-for-php
