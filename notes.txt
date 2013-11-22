@@ -4,3 +4,6 @@ http://stackoverflow.com/questions/10299890/how-to-set-up-view-php-server-pages-
 
 plugin
  http://download.aptana.com/studio3/plugin/install 
+ 
+C:\Users\Ryan\php\php-5.4.22-nts-Win32-VC9-x86>php -S localhost:3030 -t C:\Users
+\Ryan\git\stylesheetsDaily
