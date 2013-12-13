@@ -38,26 +38,22 @@ var server = http.createServer(function(req, response) {
 		  myData +="Product description:  "+$("#prod-description").find("p").text();
 		  myData+="<br/><br/>";
 		  
-//		  myData+=$("#prod-form").find("tbody>tr").text();
+		  myData+="<table border=1>";
+		  myData+="<tr><td>Name</td><td>Quantity</td><td>MSRP</td><td>Price</td></tr>"		  
 		  $("#prod-form").find("tbody>tr").each(function(i,e){
 			  
 			  var startRow=$(e).find(".prod-item");
-			  
-			  myData+= $(e).find(".prod-item");
-			  myData+= $(e).find(".prod-type");
-			  myData+= $(e).find(".prod-msrp");
-			  myData+= $(e).find(".prod-price");
-			 
 			  if (startRow.length>0){
-				  myData+= "<br>";
+				  myData+="<tr>";
+				  myData+="<td>"+$(e).find(".prod-item").text()+"</td>";
+				  myData+="<td>"+$(e).find(".prod-type").text()+"</td>";
+				  myData+="<td>"+$(e).find(".prod-msrp").text()+"</td>";
+				  myData+="<td>"+$(e).find(".prod-price").text()+"</td>";
+				  myData+= "</tr>";
 			  }
 		  })
-		  
-//		  $("form#prod-form>table.prod-grid>tr").each(function(i,e){
-//			  	 myData+=$(e).find("td.prod-stock>span.icon-checkmark>span").text();
-//			  	 console.log("in loop")
-//		  })
-			  
+		  myData+="</table>";
+
 		  response.write(myData);
 		  
 		  response.end();
