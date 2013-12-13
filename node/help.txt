@@ -12,5 +12,15 @@ To do:
        these html elements
 
 3) Figure out what HTML/CSS framework to use so that it's a RWD.  
-    a) I was using 
-3) 
+    a) I was using Foundation which I found to be pretty slick.  It works well with RWD and offers pre-built templates. 
+    b) Bootstrap? It looks really slick. 
+    c) Need to consider that any RWD CSS/JS framework available current is all client side dom manipulation
+    
+4) Figure out a way to render HTML on the server to lighten the load on client-side DOM maniupulation. 
+    a) If we use a client side RWD framework then that will be taxing on the client. We can't afford to do both DOM 
+       manipulation and RWD manipulation on the client.
+    a) I want our website to be fast.  Performing DOM manipulating on the client is too expensive. 
+    b) Explore angular capabilities on how to render what we need on the server then we can style on the client
+    c) Does node.js javascript use the client for cheerio manipulations? I'm not sure. We need to find out
+    
+ 
