@@ -37,8 +37,28 @@ var server = http.createServer(function(req, response) {
 		  myData+="<br/><br/>";
 		  myData +="Product description:  "+$("#prod-description").find("p").text();
 		  myData+="<br/><br/>";
-
-		  response.write(myData)
+		  
+//		  myData+=$("#prod-form").find("tbody>tr").text();
+		  $("#prod-form").find("tbody>tr").each(function(i,e){
+			  
+			  var startRow=$(e).find(".prod-item");
+			  
+			  myData+= $(e).find(".prod-item");
+			  myData+= $(e).find(".prod-type");
+			  myData+= $(e).find(".prod-msrp");
+			  myData+= $(e).find(".prod-price");
+			 
+			  if (startRow.length>0){
+				  myData+= "<br>";
+			  }
+		  })
+		  
+//		  $("form#prod-form>table.prod-grid>tr").each(function(i,e){
+//			  	 myData+=$(e).find("td.prod-stock>span.icon-checkmark>span").text();
+//			  	 console.log("in loop")
+//		  })
+			  
+		  response.write(myData);
 		  
 		  response.end();
 	  }
