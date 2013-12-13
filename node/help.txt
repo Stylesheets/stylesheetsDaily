@@ -1,0 +1,16 @@
+To do: 
+1) Get Heroku up and running with hello world.
+    a) Create index.js that will require our server code and execute and start the http server
+        https://devcenter.heroku.com/articles/getting-started-with-nodejs
+    b) Create a Procfile file so that we can point web=index.js 
+        http://www.nodebeginner.org/#a-full-blown-web-application-with-nodejs
+    c) Create simple hello world where it spits out html onto the page.
+
+2) Figure out how to easier build HTML elements in node.js
+    a) Research node.js add-ons to include so that we can easier build HTML dynamically. Building a long string with
+       html components works for now but we should think about how to better integrate an add-on to help facilitate
+       these html elements
+
+3) Figure out what HTML/CSS framework to use so that it's a RWD.  
+    a) I was using 
+3) 
