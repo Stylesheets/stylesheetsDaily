@@ -35,7 +35,7 @@ var server = http.createServer(function(req, response) {
 		  myData+="<br/><br/>";
 		  myData +="Product quantity:  "+$("#prod-description").find("h2").text();
 		  myData+="<br/><br/>";
-		  myData +="Product description:  "+$("#prod-description").find("p").text();
+		  myData +="Product description:  "+$("#prod-description").find("p");
 		  myData+="<br/><br/>";
 		  
 		  myData+="<table border=1>";
