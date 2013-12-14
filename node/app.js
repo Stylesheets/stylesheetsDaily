@@ -24,7 +24,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res) {
   res.render('index', {
-    title: 'Home'
+    title: 'Ryan is a loser.com!'
   });
 });
 
