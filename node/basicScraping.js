@@ -1,7 +1,6 @@
 
 var http = require("http");
 var cheerio = require("cheerio");
-var jade = require("jade");
 
 // Utility function that downloads a URL and invokes
 // callback with the data.
@@ -27,8 +26,8 @@ var server = http.createServer(function(req, response) {
 	download(url, function(data) {
 	  if (data) {
 		  console.log("retrieved data successfully");
-		
-		  response.write(h1 Jade3)
+		  
+		  response.write("<h1>Joe Cigar test page</h1>")
 		  
 		  var $ = cheerio.load(data);
 		
