@@ -3,7 +3,9 @@
  */
 var express = require('express'),
   stylus = require('stylus'),
-  nib = require('nib');
+  nib = require('nib'),
+  cheerio = require("cheerio"),
+  basicScraping = require('./basicScraping');
 
 var app = express();
 
@@ -24,7 +26,8 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res) {
   res.render('index', {
-    title: 'Ryan is a loser.com!'
+    title: 'Ryan is a loser.com!',
+    prodDescription: 'basicScraping.getData()'
   });
 });
 
@@ -32,3 +35,4 @@ var port = 8080;
 
 app.listen(port);
 console.log("server started on port: " + port);
+basicScraping.echo();
