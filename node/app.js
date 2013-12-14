@@ -24,6 +24,7 @@ app.use(stylus.middleware({
 }));
 app.use(express.static(__dirname + '/public'));
 
+// TODO: Figure out how to return results from basicScraping function within res.render to display in template
 app.get('/', function(req, res) {
   res.render('index', {
     title: 'Ryan is a loser.com!',
