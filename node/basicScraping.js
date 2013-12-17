@@ -56,10 +56,18 @@ BasicScraping.prototype.getData = function(callback) {
 
 			console.log("retrieved data successfully");
 
-			var text = $("#prod-description").find("h1").text();
+			var text = [];
+
+			// grab all product data from page into array
+			text[0] = $("#prod-description").find("h1").text();
+			text[1] = $("#prod-description").find("h2").text();
+			text[2] = $("#prod-description").find("p").text();
+			text[3] = $(".prod-item").find(".item").text() + " " + $(".prod-item").find(".dimensions").text();
+			text[4] = $(".prod-type").find(".type").text();
+			text[5] = $(".prod-msrp").find(".msrp").text();
+			text[6] = $("tbody").find(".prod-price").text();
 
 			//console.log(text);
-
 			callback(text);
 		} else callback(null);
 	});

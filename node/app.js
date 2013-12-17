@@ -42,4 +42,5 @@ console.log("look at BasicScraping go...");
 //bs.echo();
 bs.getData(function(err, data) {
   console.log(err, data);
+  //console.log(data[0]);
 });
