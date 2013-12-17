@@ -4,8 +4,7 @@
 var express = require('express'),
   stylus = require('stylus'),
   nib = require('nib'),
-  cheerio = require("cheerio"),
-  basicScraping = require('./basicScraping');
+  BasicScraping = require('./basicScraping');
 
 var app = express();
 
@@ -36,4 +35,11 @@ var port = 8080;
 
 app.listen(port);
 console.log("server started on port: " + port);
-basicScraping.echo();
+
+var bs = new BasicScraping("cigarsinternational", "http://www.cigarsinternational.com/joecigar/");
+
+console.log("look at BasicScraping go...");
+//bs.echo();
+bs.getData(function(err, data) {
+  console.log(err, data);
+});
