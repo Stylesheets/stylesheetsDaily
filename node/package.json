@@ -7,7 +7,9 @@
   },
   "dependencies": {
     "express": "3.4.7",
-    "jade": "*"
-    // possibly add mongodb support in future
+    "jade": "*",
+    "stylus": "0.42.0",
+    "nib": "1.0.2",
+    "cheerio": "0.13.1"
   }
 }
