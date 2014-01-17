@@ -49,7 +49,10 @@ var bs = new BasicScraping("cigarsinternational", "http://www.cigarsinternationa
 
 console.log("look at BasicScraping go...");
 //bs.echo();
+var arry = [];
 bs.getData(function(data, err) {
   console.log(data);
   //console.log(data[0]);
+  arry[0] = data[0];
+  arry[1] = data[1];
 });

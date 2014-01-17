@@ -3,7 +3,14 @@ extend layout
 block head
   //link(rel='stylesheet', href='/javascripts/vendor/bootstrap-css/css/bootstrap.css')
 
+  script(type='text/javascript', src='/javascripts/controllers/dealControllers.js')
 block content
+  h1 Our Sizzling Offers!
+  div.container(ng-controller="dealController")
+    div.deal-row(ng-repeat="deal in deals")
+        {{deal.name}}
+        p {{deal.description}}
+
   p
     | Product Description: #{prodDescription} 
     | Some Angular math {{1+3}}
