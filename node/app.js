@@ -2,39 +2,48 @@
  * Module dependencies
  */
 var express = require('express'),
+  routes = require('./routes'),
+  http = require('http'),
+  path = require('path'),
   stylus = require('stylus'),
   nib = require('nib'),
   BasicScraping = require('./basicScraping');
 
 var app = express();
 
+/* TODO review if we need this function?, 
+what is nib used for?
+
 function compile(str, path) {
   return stylus(str)
     .set('filename', path)
     .use(nib());
 }
+*/
 
-app.set('views', __dirname + '/views');
+// all environments
+app.set('port', process.env.PORT || 8080);
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+app.use(express.favicon());
 app.use(express.logger('dev'));
-app.use(stylus.middleware({
-  src: __dirname + '/public',
-  compile: compile
-}));
-app.use(express.static(__dirname + '/public'));
+app.use(express.json());
+app.use(express.urlencoded());
+app.use(express.methodOverride());
+app.use(app.router);
+app.use(express.static(path.join(__dirname, 'public')));
 
-// TODO: Figure out how to return results from basicScraping function within res.render to display in template
-app.get('/', function(req, res) {
-  res.render('index', {
-    title: 'Ryan is a loser.com!',
-    prodDescription: 'basicScraping.getData()'
-  });
+
+// development only
+if ('development' == app.get('env')) {
+  app.use(express.errorHandler());
+}
+
+app.get('/', routes.index);
+
+http.createServer(app).listen(app.get('port'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
 });
-
-var port = 8080;
-
-app.listen(port);
-console.log("server started on port: " + port);
 
 var bs = new BasicScraping("cigarsinternational", "http://www.cigarsinternational.com/joecigar/");
 
