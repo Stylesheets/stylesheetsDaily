@@ -50,6 +50,7 @@ BasicScraping.prototype.download = function(url, callback) {
  * TODO: Figure out how to return an array of product data
  */
 BasicScraping.prototype.getData = function(callback) {
+	var that = this;
 	this.download(this.url, function(data) {
 		if (data) {
 			var $ = cheerio.load(data);
@@ -58,14 +59,18 @@ BasicScraping.prototype.getData = function(callback) {
 
 			var text = [];
 
+			// Save Site name & Url
+			text[0] = that.name;
+			text[1] = that.url;
+
 			// grab all product data from page into array
-			text[0] = $("#prod-description").find("h1").text();
-			text[1] = $("#prod-description").find("h2").text();
-			text[2] = $("#prod-description").find("p").text();
-			text[3] = $(".prod-item").find(".item").text() + " " + $(".prod-item").find(".dimensions").text();
-			text[4] = $(".prod-type").find(".type").text();
-			text[5] = $(".prod-msrp").find(".msrp").text();
-			text[6] = $("tbody").find(".prod-price").text();
+			text[2] = $("#prod-description").find("h1").text();
+			text[3] = $("#prod-description").find("h2").text();
+			text[4] = $("#prod-description").find("p").text();
+			text[5] = $(".prod-item").find(".item").text() + " " + $(".prod-item").find(".dimensions").text();
+			text[6] = $(".prod-type").find(".type").text();
+			text[7] = $(".prod-msrp").find(".msrp").text();
+			text[8] = $("tbody").find(".prod-price").text();
 
 			//console.log(text);
 			callback(text);

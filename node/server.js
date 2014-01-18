@@ -50,12 +50,13 @@ app.get('/api/deals', function(req, res) {
   res.json(myDeals);
 });
 
+// Launch Server ==================
 http.createServer(app).listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));
 });
 
 // Attempt scraping data =========================
-var bs = new BasicScraping("cigarsinternational", "http://www.cigarsinternational.com/joecigar/");
+var bs = new BasicScraping("Cigars International", "http://www.cigarsinternational.com/joecigar/");
 
 console.log("look at BasicScraping go...");
 
