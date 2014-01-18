@@ -57,8 +57,23 @@ BasicScraping.prototype.getData = function(callback) {
 
 			console.log("retrieved data successfully");
 
-			var text = [];
+			var scrappedText = [];
 
+			var obj = {
+				// Save Site name & Url
+				"name": that.name,
+				"url": that.url,
+				"desc1": $("#prod-description").find("h1").text(),
+				"desc2": $("#prod-description").find("h2").text(),
+				"desc3": $("#prod-description").find("p").text(),
+				"item": $(".prod-item").find(".item").text() + " " + $(".prod-item").find(".dimensions").text(),
+				"type": $(".prod-type").find(".type").text(),
+				"msrp": $(".prod-msrp").find(".msrp").text(),
+				"price": $("tbody").find(".prod-price").text()
+			};
+
+			scrappedText.push(obj);
+			/*
 			// Save Site name & Url
 			text[0] = that.name;
 			text[1] = that.url;
@@ -71,9 +86,9 @@ BasicScraping.prototype.getData = function(callback) {
 			text[6] = $(".prod-type").find(".type").text();
 			text[7] = $(".prod-msrp").find(".msrp").text();
 			text[8] = $("tbody").find(".prod-price").text();
-
+*/
 			//console.log(text);
-			callback(text);
+			callback(scrappedText);
 		} else callback(null);
 	});
 };

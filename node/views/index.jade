@@ -6,11 +6,17 @@ block head
   script(type='text/javascript', src='/javascripts/controllers/dealControllers.js')
 block content
   h1 Our Sizzling Offers!
-  div.container(ng-controller="dealController")
+  div.container(ng-controller="dealController")(ng-cloak)
     div.deal-row(ng-repeat="deal in deals")
-        {{deal.name}}
-        p {{deal.description}}
-
+        {{deal.desc1}} - {{deal.desc2}}
+        a(href='{{deal.url}}') {{deal.name}}
+        p
+          | Sale: {{deal.price}} MSRP: {{deal.msrp}}
+          br
+          | {{deal.item}}
+          | {{deal.type}}
+          br
+          | {{deal.desc3}}
   p
     | Product Description: #{prodDescription} 
     | Some Angular math {{1+3}}
