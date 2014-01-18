@@ -46,22 +46,21 @@ BasicScraping.prototype.download = function(url, callback) {
 	});
 };
 
-/* Callback receives results of prod-description text.
- * TODO: Figure out how to return an array of product data
+/* Callback receives results from specific site passed via url
  */
-BasicScraping.prototype.getData = function(name, url, type, callback) {
+BasicScraping.prototype.getData = function(name, url, dealType, callback) {
 	//var that = this;
 	this.download(url, function(data) {
 		if (data) {
 			var $ = cheerio.load(data);
 
-			console.log("retrieved data successfully");
+			console.log("retrieved " + name + " data successfully");
 
 			var obj = {
 				// Save Site name & Url
 				"name": name,
 				"url": url,
-				"type": type,
+				"dealType": dealType,
 				"img": $("#prod-display").find("img").attr("src"),
 				"desc1": $("#prod-description").find("h1").text(),
 				"desc2": $("#prod-description").find("h2").text(),
@@ -73,6 +72,35 @@ BasicScraping.prototype.getData = function(name, url, type, callback) {
 			};
 
 			//console.log(text);
+			callback(obj);
+		} else callback(null);
+	});
+};
+
+/* Callback receives results from specific site passed via url
+ */
+BasicScraping.prototype.getWineData = function(name, url, dealType, callback) {
+	this.download(url, function(data) {
+		if (data) {
+			var $ = cheerio.load(data);
+
+			console.log("retrieved " + name + " data successfully");
+
+			var obj = {
+				// Save Site name & Url
+				"name": name,
+				"url": url,
+				"dealType": dealType,
+				"img": $("img.photo").attr("src"),
+				"desc1": $("h2.fn").text(),
+				"desc2": $("#prod-description").find("h2").text(),
+				"desc3": $("#prod-description").find("p").text(),
+				"item": $(".prod-item").find(".item").text() + " " + $(".prod-item").find(".dimensions").text(),
+				"type": $(".prod-type").find(".type").text(),
+				"msrp": $("div#summary").find("span.list-price").text(),
+				"price": $("div#summary").find("span.price").text()
+			};
+
 			callback(obj);
 		} else callback(null);
 	});

@@ -62,7 +62,14 @@ console.log("look at BasicScraping go...");
 
 var myDeals = [];
 
-bs.getData("Cigars International", "http://www.cigarsinternational.com/joecigar/", "cigars", function(data, err) {
+bs.getData("Cigars International", "http://www.cigarsinternational.com/joecigar/", "cigar", function(data, err) {
+  console.log(data);
+  //console.log(data[0]);
+  myDeals.push(data);
+  //arry[1] = data[1];
+});
+
+bs.getWineData("Wine Woot Deals", "http://wine.woot.com/", "wine", function(data, err) {
   console.log(data);
   //console.log(data[0]);
   myDeals.push(data);
