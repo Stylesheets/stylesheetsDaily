@@ -7,7 +7,8 @@ var express = require('express'),
   path = require('path'),
   stylus = require('stylus'),
   nib = require('nib'),
-  BasicScraping = require('./basicScraping');
+  BasicScraping = require('./basicScraping'),
+  cronJob = require('cron').CronJob;
 
 var app = express();
 
@@ -56,3 +57,9 @@ bs.getData(function(data, err) {
   arry[0] = data[0];
   arry[1] = data[1];
 });
+
+var job = new cronJob('* * * * * *', function() {
+  console.log("cron job fired every second!");
+});
+//uncomment following line to see cron job run
+// job.start();
