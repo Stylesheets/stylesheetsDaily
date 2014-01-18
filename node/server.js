@@ -40,23 +40,33 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+// routes =========================
 app.get('/', routes.index);
 
-http.createServer(app).listen(app.get('port'), function(){
+http.createServer(app).listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));
 });
 
+// Attempt scraping data =========================
 var bs = new BasicScraping("cigarsinternational", "http://www.cigarsinternational.com/joecigar/");
 
 console.log("look at BasicScraping go...");
-//bs.echo();
-var arry = [];
+
 bs.getData(function(data, err) {
   console.log(data);
   //console.log(data[0]);
   arry[0] = data[0];
   arry[1] = data[1];
 });
+
+// Sandbox =========================
+var arry = [{
+  "x": 1,
+  "data1": "Some Data"
+}, {
+  "y": 2,
+  "data2": "Some Data22"
+}];
 
 var job = new cronJob('* * * * * *', function() {
   console.log("cron job fired every second!");
