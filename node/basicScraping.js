@@ -49,9 +49,9 @@ BasicScraping.prototype.download = function(url, callback) {
 /* Callback receives results of prod-description text.
  * TODO: Figure out how to return an array of product data
  */
-BasicScraping.prototype.getData = function(callback) {
-	var that = this;
-	this.download(this.url, function(data) {
+BasicScraping.prototype.getData = function(name, url, type, callback) {
+	//var that = this;
+	this.download(url, function(data) {
 		if (data) {
 			var $ = cheerio.load(data);
 
@@ -59,8 +59,10 @@ BasicScraping.prototype.getData = function(callback) {
 
 			var obj = {
 				// Save Site name & Url
-				"name": that.name,
-				"url": that.url,
+				"name": name,
+				"url": url,
+				"type": type,
+				"img": $("#prod-display").find("img").attr("src"),
 				"desc1": $("#prod-description").find("h1").text(),
 				"desc2": $("#prod-description").find("h2").text(),
 				"desc3": $("#prod-description").find("p").text(),

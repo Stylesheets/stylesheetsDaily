@@ -9,12 +9,14 @@ block content
   div.container(ng-controller="dealController")(ng-cloak)
     div.deal-row(ng-repeat="deal in deals")
         {{deal.desc1}} - {{deal.desc2}}
-        a(href='{{deal.url}}') {{deal.name}}
+        a(href='{{deal.url}}') {{deal.name}}        
         p
           | Sale: {{deal.price}} MSRP: {{deal.msrp}}
           br
           | {{deal.item}}
           | {{deal.type}}
+          br
+          img(src='{{deal.img}}')
           br
           | {{deal.desc3}}
   p

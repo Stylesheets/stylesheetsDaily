@@ -62,7 +62,7 @@ console.log("look at BasicScraping go...");
 
 var myDeals = [];
 
-bs.getData(function(data, err) {
+bs.getData("Cigars International", "http://www.cigarsinternational.com/joecigar/", "cigars", function(data, err) {
   console.log(data);
   //console.log(data[0]);
   myDeals.push(data);
