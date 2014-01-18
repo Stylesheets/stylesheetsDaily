@@ -41,7 +41,14 @@ if ('development' == app.get('env')) {
 }
 
 // routes =========================
+// Main entry into web view
 app.get('/', routes.index);
+
+// api ----------------------------
+// get data -----------------------
+app.get('/api/deals', function(req, res) {
+  res.json(myDeals);
+});
 
 http.createServer(app).listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));
@@ -52,22 +59,16 @@ var bs = new BasicScraping("cigarsinternational", "http://www.cigarsinternationa
 
 console.log("look at BasicScraping go...");
 
+var myDeals = [];
+
 bs.getData(function(data, err) {
   console.log(data);
   //console.log(data[0]);
-  arry[0] = data[0];
-  arry[1] = data[1];
+  myDeals = data;
+  //arry[1] = data[1];
 });
 
 // Sandbox =========================
-var arry = [{
-  "x": 1,
-  "data1": "Some Data"
-}, {
-  "y": 2,
-  "data2": "Some Data22"
-}];
-
 var job = new cronJob('* * * * * *', function() {
   console.log("cron job fired every second!");
 });

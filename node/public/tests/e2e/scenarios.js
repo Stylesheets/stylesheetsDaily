@@ -12,3 +12,14 @@ describe('Display RichBiz Main Page', function() {
 		expect(element('div.widget').count()).toBe(2);
 	});
 });
+
+describe('Display Deals API', function() {
+	beforeEach(function() {
+		sleep(10);
+		browser().navigateTo('/api/deals');
+	});
+
+	it("should display deals api via get in JSON format", function() {
+		expect(element('pre').val()).not().toEqual('');
+	});
+});
