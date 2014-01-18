@@ -57,8 +57,6 @@ BasicScraping.prototype.getData = function(callback) {
 
 			console.log("retrieved data successfully");
 
-			var scrappedText = [];
-
 			var obj = {
 				// Save Site name & Url
 				"name": that.name,
@@ -72,23 +70,8 @@ BasicScraping.prototype.getData = function(callback) {
 				"price": $("tbody").find(".prod-price").text()
 			};
 
-			scrappedText.push(obj);
-			/*
-			// Save Site name & Url
-			text[0] = that.name;
-			text[1] = that.url;
-
-			// grab all product data from page into array
-			text[2] = $("#prod-description").find("h1").text();
-			text[3] = $("#prod-description").find("h2").text();
-			text[4] = $("#prod-description").find("p").text();
-			text[5] = $(".prod-item").find(".item").text() + " " + $(".prod-item").find(".dimensions").text();
-			text[6] = $(".prod-type").find(".type").text();
-			text[7] = $(".prod-msrp").find(".msrp").text();
-			text[8] = $("tbody").find(".prod-price").text();
-*/
 			//console.log(text);
-			callback(scrappedText);
+			callback(obj);
 		} else callback(null);
 	});
 };

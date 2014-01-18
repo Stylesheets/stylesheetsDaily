@@ -65,7 +65,7 @@ var myDeals = [];
 bs.getData(function(data, err) {
   console.log(data);
   //console.log(data[0]);
-  myDeals = data;
+  myDeals.push(data);
   //arry[1] = data[1];
 });
 
