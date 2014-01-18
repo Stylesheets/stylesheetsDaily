@@ -1,9 +1,11 @@
 {
   "name": "richdealz",
   "version": "0.0.1",
+  "description": "App to get deals from various sites",
+  "main": "server.js",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "express": "3.4.7",
