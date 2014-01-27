@@ -62,13 +62,13 @@ BasicScraping.prototype.getData = function(name, url, dealType, callback) {
 				"url": url,
 				"dealType": dealType,
 				"img": $("#prod-display").find("img").attr("src"),
-				"desc1": $("#prod-description").find("h1").text(),
-				"desc2": $("#prod-description").find("h2").text(),
-				"desc3": $("#prod-description").find("p").text(),
-				"item": $(".prod-item").find(".item").text() + " " + $(".prod-item").find(".dimensions").text(),
-				"type": $(".prod-type").find(".type").text(),
-				"msrp": $(".prod-msrp").find(".msrp").text(),
-				"price": $("tbody").find(".prod-price").text()
+				"desc1": $("#prod-description").find("h1").text().trim(),
+				"desc2": $("#prod-description").find("h2").text().trim(),
+				"desc3": $("#prod-description").find("p").text().trim(),
+				"item": $(".prod-item").find(".item").text().trim() + " " + $(".prod-item").find(".dimensions").text().trim(),
+				"type": $(".prod-type").find(".type").text().trim(),
+				"msrp": $(".prod-msrp").find(".msrp").text().trim(),
+				"price": $("tbody").find(".prod-price").text().trim()
 			};
 
 			//console.log(text);
@@ -92,13 +92,13 @@ BasicScraping.prototype.getWineData = function(name, url, dealType, callback) {
 				"url": url,
 				"dealType": dealType,
 				"img": $("img.photo").attr("src"),
-				"desc1": $("h2.fn").text(),
-				"desc2": $("#prod-description").find("h2").text(),
-				"desc3": $("#prod-description").find("p").text(),
-				"item": $(".prod-item").find(".item").text() + " " + $(".prod-item").find(".dimensions").text(),
-				"type": $(".prod-type").find(".type").text(),
-				"msrp": $("div#summary").find("span.list-price").text(),
-				"price": $("div#summary").find("span.price").text()
+				"desc1": $("h2.fn").text().trim(),
+				"desc2": $("#prod-description").find("h2").text().trim(),
+				"desc3": $("#prod-description").find("p").text().trim(),
+				"item": $(".prod-item").find(".item").text().trim() + " " + $(".prod-item").find(".dimensions").text().trim(),
+				"type": $(".prod-type").find(".type").text().trim(),
+				"msrp": $("div#summary").find("span.list-price").text().trim(),
+				"price": $("div#summary").find("span.price").text().trim()
 			};
 
 			callback(obj);
