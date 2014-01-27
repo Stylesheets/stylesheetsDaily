@@ -4,10 +4,12 @@ block head
   script(type='text/javascript', src='/javascripts/controllers/dealControllers.js')
 block content
   div.row.col-md-8
-    h2 Our Sizzling Offers!
-    div.container(ng-controller="dealController")(ng-cloak)
-      div.row(ng-repeat="deal in deals")
-          h3 {{deal.desc1}} 
+    h2 Sizzling Offers!
+    div.container.col-md-offset-1(ng-controller="dealController")(ng-cloak)
+      div.row.panel.panel-info(ng-repeat="deal in deals")
+        div.panel-heading
+          h3.panel-title {{deal.desc1}} 
+        div.panel-body
           {{deal.desc2}} - 
           a(href='{{deal.url}}') {{deal.name}}
           p
@@ -19,7 +21,6 @@ block content
             img(src='{{deal.img}}')
             br
             | {{deal.desc3}}
-          hr
 
   div#sidebar.sidebar.col-md-3
     .widget
