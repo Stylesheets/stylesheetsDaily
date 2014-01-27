@@ -3,35 +3,37 @@ extend layout
 block head
   script(type='text/javascript', src='/javascripts/controllers/dealControllers.js')
 block content
-  h1 Our Sizzling Offers!
-  div.container(ng-controller="dealController")(ng-cloak)
-    div.deal-row(ng-repeat="deal in deals")
-        {{deal.desc1}} - {{deal.desc2}} - 
-        a(href='{{deal.url}}') {{deal.name}}
-        p
-          | Sale: {{deal.price}} MSRP: {{deal.msrp}}
-          br
-          | {{deal.item}}
-          | {{deal.type}}
-          br
-          img(src='{{deal.img}}')
-          br
-          | {{deal.desc3}}
-        hr
+  div.row.col-md-8
+    h2 Our Sizzling Offers!
+    div.container(ng-controller="dealController")(ng-cloak)
+      div.row(ng-repeat="deal in deals")
+          h3 {{deal.desc1}} 
+          {{deal.desc2}} - 
+          a(href='{{deal.url}}') {{deal.name}}
+          p
+            | Sale: {{deal.price}} MSRP: {{deal.msrp}}
+            br
+            | {{deal.item}}
+            | {{deal.type}}
+            br
+            img(src='{{deal.img}}')
+            br
+            | {{deal.desc3}}
+          hr
 
-block sidebarDonate
-  .widget
-    h1 Donate Widget
-    p
-      | Some donate widget... neque eu tellus rhoncus ut
-      | eleifend nibh porttitor. Ut in nulla enim.
-    
-    p
-      | Vivamus hendrerit arcu sed erat molestie
-      | vehicula.
+  div#sidebar.sidebar.col-md-3
+    .widget
+      h3 Donate Widget
+      p
+        | Some donate widget... neque eu tellus rhoncus ut
+        | eleifend nibh porttitor. Ut in nulla enim.
+      
+      p
+        | Vivamus hendrerit arcu sed erat molestie
+        | vehicula.
 
-block sidebarAds
-  .widget
-    h1 Advertisement
-    p
-      img(src="http://24.media.tumblr.com/tumblr_m0v8v2HrwI1qz4hvyo1_250.gif")
+    br 
+    .widget
+      h3 Advertisement
+      p
+        img(src="http://24.media.tumblr.com/tumblr_m0v8v2HrwI1qz4hvyo1_250.gif")

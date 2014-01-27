@@ -12,11 +12,11 @@ html(ng-app)
     header
       h1 #{title}
     .container
-      .main-content
+      .row
         block content
-      .sidebar
-        block sidebarDonate
-        br
-        block sidebarAds
+      //.sidebar
+      //  block sidebar
     footer
-      p Running on node with Express, Jade and Stylus
+      .row.col-md-10.col-md-offset-1
+          hr
+          p Running on node with Express, Jade and Stylus
