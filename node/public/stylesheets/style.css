@@ -125,7 +125,7 @@ header {
   /*  
     width: 500px;
   */
-  margin: 10px auto;
+  margin: 0px auto;
   overflow: hidden;
 }
 /*
@@ -142,6 +142,10 @@ header {
 }
 
 */
+.sidebar{
+  margin-top: 20px;
+}
+
 .sidebar .widget {
 /*
      * Note the lack of vendor
@@ -156,7 +160,6 @@ header {
   -webkit-box-shadow: inset 0px 0px 0px 3px rgba(255,255,255,0.8), 0px 3px 0px -2px rgba(0,0,0,0.1);
   box-shadow: inset 0px 0px 0px 3px rgba(255,255,255,0.8), 0px 3px 0px -2px rgba(0,0,0,0.1);
   padding: 0px 5px;
-  margin-bottom: 0px;
 }
 
 p {
