@@ -8,6 +8,7 @@ var express = require('express'),
   stylus = require('stylus'),
   nib = require('nib'),
   BasicScraping = require('./basicScraping'),
+  AmazonProduct = require('./amazonProduct'),
   cronJob = require('cron').CronJob;
 
 var app = express();
@@ -54,6 +55,10 @@ app.get('/api/deals', function(req, res) {
 http.createServer(app).listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+// Attempt getting Amazon Product results
+var amazonProduct = new AmazonProduct();
+amazonProduct.execute();
 
 // Attempt scraping data =========================
 var bs = new BasicScraping("Cigars International", "http://www.cigarsinternational.com/joecigar/");
