@@ -34,10 +34,15 @@ block content
         | vehicula.
 
     br 
-    .widget
-      h4 Advertisement
-      p
-        img(src="http://24.media.tumblr.com/tumblr_m0v8v2HrwI1qz4hvyo1_250.gif")
+    div.widget(ng-controller="dealController")(ng-cloak)
+      h4 Cool Amazon Products
+      div(ng-repeat="amazon in amazonImageURLs")
+        a(href='{{amazon.DetailPageURL}}') 
+          {{amazon.Title}}
+          br
+          | Price: {{amazon.Price}}
+          img(src="{{amazon.MediumImage}}")
+        hr
 
     br
     .widget

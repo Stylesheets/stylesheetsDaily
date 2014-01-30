@@ -6,11 +6,11 @@ module.exports = AmazonProduct;
 /* Constructor
  */
 function AmazonProduct() {
-	// always initialize all instance properties
+	// get credentials from command line arguments
 	this.opHelper = new OperationHelper({
-		awsId: '[YOUR AWS ID HERE]',
-		awsSecret: '[YOUR AWS SECRET HERE]',
-		assocId: '[YOUR ASSOCIATE TAG HERE]'
+		awsId: process.argv[2],
+		awsSecret: process.argv[3],
+		assocId: process.argv[4]
 	});
 }
 
@@ -20,13 +20,27 @@ function AmazonProduct() {
 // callback(parsed, raw): callback function handling results. parsed = xml2js parsed response. raw = raw xml response
 // onError: function handling errors, otherwise all error messages are printed with console.log()
 
-AmazonProduct.prototype.execute = function() {
+AmazonProduct.prototype.execute = function(callback) {
 	this.opHelper.execute('ItemSearch', {
-		'SearchIndex': 'Books',
-		'Keywords': 'harry potter',
-		'ResponseGroup': 'ItemAttributes,Offers'
-	}, function(results) { // you can add a second parameter here to examine the raw xml response
-		console.log("these are the results: " + results);
+		'SearchIndex': 'All',
+		'Keywords': 'Cigar',
+		'ResponseGroup': 'Images,ItemAttributes,Offers'
+	}, function(results) {
+		var arry = [{
+				'Title': results.ItemSearchResponse.Items[0].Item[0].ItemAttributes[0].Title + "",
+				'Price':  results.ItemSearchResponse.Items[0].Item[0].ItemAttributes[0].ListPrice[0].FormattedPrice + " (" + results.ItemSearchResponse.Items[0].Item[0].ItemAttributes[0].ListPrice[0].CurrencyCode + ")",
+				'DetailPageURL': results.ItemSearchResponse.Items[0].Item[0].DetailPageURL + "",
+				'MediumImage': results.ItemSearchResponse.Items[0].Item[0].MediumImage[0].URL + ""
+			},
+			{
+				'Title': results.ItemSearchResponse.Items[0].Item[1].ItemAttributes[0].Title + "",
+				'Price':  results.ItemSearchResponse.Items[0].Item[1].ItemAttributes[0].ListPrice[0].FormattedPrice + " (" + results.ItemSearchResponse.Items[0].Item[0].ItemAttributes[0].ListPrice[0].CurrencyCode + ")",
+				'DetailPageURL': results.ItemSearchResponse.Items[0].Item[1].DetailPageURL + "",
+				'MediumImage': results.ItemSearchResponse.Items[0].Item[1].MediumImage[0].URL + ""
+			}
+		];
+		console.log("Results:\n" + util.inspect(arry) + "\n");
+		callback(arry);
 	});
 };
 

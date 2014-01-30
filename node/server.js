@@ -51,14 +51,29 @@ app.get('/api/deals', function(req, res) {
   res.json(myDeals);
 });
 
+app.get('/api/amazonProducts', function(req, res) {
+  res.json(amazonImageURL);
+});
+
 // Launch Server ==================
 http.createServer(app).listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));
 });
 
+// Check that expected arguments were passed on command line else exit.
+if (process.argv.length !== 5) {
+  console.error("\nError: Script requires awsId, awsSecret, assocId arguments for aws Advertisement requests after node javascript file.\n");
+  console.error("\tFormat expected is: node server.js awsId awsSecret assocId\n");
+  exit();
+}
+
 // Attempt getting Amazon Product results
 var amazonProduct = new AmazonProduct();
-amazonProduct.execute();
+var amazonImageURL = [];
+
+amazonProduct.execute(function(data) {
+  amazonImageURL = data;
+});
 
 // Attempt scraping data =========================
 var bs = new BasicScraping("Cigars International", "http://www.cigarsinternational.com/joecigar/");
@@ -67,6 +82,7 @@ console.log("look at BasicScraping go...");
 
 var myDeals = [];
 
+// Get Daily deal from Joe's site
 bs.getData("Cigars International", "http://www.cigarsinternational.com/joecigar/", "cigar", function(data, err) {
   console.log(data);
   //console.log(data[0]);

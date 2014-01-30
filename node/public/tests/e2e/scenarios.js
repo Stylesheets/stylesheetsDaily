@@ -8,8 +8,8 @@ describe('Display RichBiz Main Page', function() {
 	});
 
 	it("should display main page layout", function() {
-		expect(element('div.main-content').count()).toBe(1);
-		expect(element('div.widget').count()).toBe(2);
+		expect(element('div.container').count()).toBe(1);
+		expect(element('div.widget').count()).toBe(3);
 	});
 });
 
