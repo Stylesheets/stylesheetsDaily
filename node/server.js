@@ -90,6 +90,30 @@ bs.getData("Cigars International", "http://www.cigarsinternational.com/joecigar/
   //arry[1] = data[1];
 });
 
+// Get 1-day-deal from Joe's site
+bs.getData("Cigars International", "http://www.cigarsinternational.com/specials/1-day-deal/", "cigar", function(data, err) {
+  console.log(data);
+  //console.log(data[0]);
+  myDeals.push(data);
+  //arry[1] = data[1];
+});
+
+// Get weekly deal from Joe's site
+bs.getData("Cigars International", "http://www.cigarsinternational.com/specials/weekly-special/", "cigar", function(data, err) {
+  console.log(data);
+  //console.log(data[0]);
+  myDeals.push(data);
+  //arry[1] = data[1];
+});
+
+// Get weekend spotlight from Joe's site
+bs.getData("Cigars International", "http://www.cigarsinternational.com/specials/weekend-spotlight/", "cigar", function(data, err) {
+  console.log(data);
+  //console.log(data[0]);
+  myDeals.push(data);
+  //arry[1] = data[1];
+});
+
 bs.getWineData("Wine Woot Deals", "http://wine.woot.com/", "wine", function(data, err) {
   console.log(data);
   //console.log(data[0]);
