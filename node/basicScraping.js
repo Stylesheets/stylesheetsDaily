@@ -105,3 +105,34 @@ BasicScraping.prototype.getWineData = function(name, url, dealType, callback) {
 		} else callback(null);
 	});
 };
+
+/* Callback receives results from getCigarMonster site passed via url.  Only attempt displaying first deal
+ */
+BasicScraping.prototype.getCigarMonster = function(name, url, dealType, callback) {
+	//var that = this;
+	this.download(url, function(data) {
+		if (data) {
+			var $ = cheerio.load(data);
+
+			console.log("retrieved " + name + " data successfully");
+
+			var obj = {
+				// Save Site name & Url
+				"name": name,
+				"url": url,
+				"dealType": dealType,
+				"img": $(".mashupitemnoimg", ".mashupitemcrate").find("img").attr("src"),
+				"desc1": $(".mashupitembox", ".mashupitemcrate").find(".mashupitemdes").first().text().trim(),
+				"desc2": $("#prod-description").find("h2").text().trim(),
+				"desc3": $("#prod-description").find("p").text().trim(),
+				"item": $(".prod-item").find(".item").text().trim() + " " + $(".prod-item").find(".dimensions").text().trim(),
+				"type": $(".prod-type").find(".type").text().trim(),
+				"msrp": $(".prod-msrp").find(".msrp").text().trim(),
+				"price": $(".mashupitembox", ".mashupitemcrate").find(".mashupitemprice").first().text().trim()
+			};
+
+			//console.log(text);
+			callback(obj);
+		} else callback(null);
+	});
+};

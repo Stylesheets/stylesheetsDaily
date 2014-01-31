@@ -82,6 +82,7 @@ console.log("look at BasicScraping go...");
 
 var myDeals = [];
 
+// Joe's Site =========================
 // Get Daily deal from Joe's site
 bs.getData("Cigars International", "http://www.cigarsinternational.com/joecigar/", "cigar", function(data, err) {
   console.log(data);
@@ -114,6 +115,13 @@ bs.getData("Cigars International", "http://www.cigarsinternational.com/specials/
   //arry[1] = data[1];
 });
 
+// getCigarMonster Site (first deal) =========================
+bs.getCigarMonster("Cigarmonster.com", "http://www.cigarmonster.com/", "cigar", function(data, err){
+  console.log(data);
+  myDeals.push(data);
+});
+
+// Wine Woot Deals Site =========================
 bs.getWineData("Wine Woot Deals", "http://wine.woot.com/", "wine", function(data, err) {
   console.log(data);
   //console.log(data[0]);
