@@ -65,10 +65,10 @@ BasicScraping.prototype.getData = function(name, url, dealType, callback) {
 				"desc1": $("#prod-description").find("h1").text().trim(),
 				"desc2": $("#prod-description").find("h2").text().trim(),
 				"desc3": $("#prod-description").find("p").text().trim(),
-				"item": $(".prod-item").find(".item").text().trim() + " " + $(".prod-item").find(".dimensions").text().trim(),
-				"type": $(".prod-type").find(".type").text().trim(),
-				"msrp": $(".prod-msrp").find(".msrp").text().trim(),
-				"price": $("tbody").find(".prod-price").text().trim()
+				"item": $(".prod-item").find(".item").first().text().trim() + " " + $(".prod-item").find(".dimensions").first().text().trim(),
+				"type": $(".prod-type").find(".type").first().text().trim(),
+				"msrp": $(".prod-msrp").find(".msrp").first().text().trim(),
+				"price": $("tbody").find(".prod-price").first().text().trim()
 			};
 
 			//console.log(text);
