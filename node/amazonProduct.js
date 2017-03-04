@@ -38,6 +38,13 @@ AmazonProduct.prototype.execute = function(callback) {
 				'DetailPageURL': results.ItemSearchResponse.Items[0].Item[1].DetailPageURL + "",
 				'MediumImage': results.ItemSearchResponse.Items[0].Item[1].MediumImage[0].URL + ""
 			}
+			,
+			{
+				'Title': results.ItemSearchResponse.Items[0].Item[2].ItemAttributes[0].Title + "",
+				'Price':  results.ItemSearchResponse.Items[0].Item[2].ItemAttributes[0].ListPrice[0].FormattedPrice + " (" + results.ItemSearchResponse.Items[0].Item[0].ItemAttributes[0].ListPrice[0].CurrencyCode + ")",
+				'DetailPageURL': results.ItemSearchResponse.Items[0].Item[2].DetailPageURL + "",
+				'MediumImage': results.ItemSearchResponse.Items[0].Item[2].MediumImage[0].URL + ""
+			}
 		];
 		console.log("Results:\n" + util.inspect(arry) + "\n");
 		callback(arry);

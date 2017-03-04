@@ -4,35 +4,30 @@ block head
   script(type='text/javascript', src='/javascripts/controllers/dealControllers.js')
 block content
   div.row.col-md-8
-    h2 Sizzling Offers!
+    h2.col-md-offset-1 Sizzling Offers!
     div.container.col-md-offset-1(ng-controller="dealController")(ng-cloak)
       div.row.panel.panel-info(ng-repeat="deal in deals")
         div.panel-heading
-          h3.panel-title {{deal.desc1}} 
+          a(href='{{deal.url}}' target="_blank")
+            h3.panel-title {{deal.desc1}} 
         div.panel-body
           {{deal.desc2}} - 
-          a(href='{{deal.url}}') {{deal.name}}
+          a(href='{{deal.url}}' target="_blank") {{deal.name}}
           p
-            | Sale: {{deal.price}} MSRP: {{deal.msrp}}
+            | Sale: 
+            span(style="font-weight: bold;font-size:large;") {{deal.price}}
+            |  MSRP:
+            span(style="text-decoration: line-through;") {{deal.msrp}}
             br
             | {{deal.item}}
             | {{deal.type}}
             br
-            img(src='{{deal.img}}')
+            a(href='{{deal.url}}' target="_blank")
+              img(src='{{deal.img}}' style="float:left;padding-right:10px;width:60%;height:60%")
             br
             | {{deal.desc3}}
 
   div#sidebar.sidebar.col-md-3
-    .widget
-      h4 Donate Widget
-      p
-        | Some donate widget... neque eu tellus rhoncus ut
-        | eleifend nibh porttitor. Ut in nulla enim.
-      
-      p
-        | Vivamus hendrerit arcu sed erat molestie
-        | vehicula.
-
     br 
     div.widget(ng-controller="dealController")(ng-cloak)
       h4 Cool Amazon Products
@@ -43,9 +38,19 @@ block content
           | Price: {{amazon.Price}}
           img(src="{{amazon.MediumImage}}")
         hr
-
     br
     .widget
       h4 Advertisement
       <iframe src="http://rcm-na.amazon-adsystem.com/e/cm?t=perssite083-20&o=1&p=42&l=ur1&category=gold&banner=130ACW5000ZJ9DS5Q3R2&f=ifr" width="234" height="60" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
+
+    br
+    .widget
+      h4 Donate Widget
+      p
+        | Some donate widget... neque eu tellus rhoncus ut
+        | eleifend nibh porttitor. Ut in nulla enim.
+      
+      p
+        | Vivamus hendrerit arcu sed erat molestie
+        | vehicula.
 
