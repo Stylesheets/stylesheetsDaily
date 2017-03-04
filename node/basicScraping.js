@@ -1,5 +1,6 @@
 var http = require("http");
 var cheerio = require("cheerio");
+var request = require('request');
 
 module.exports = BasicScraping;
 
@@ -31,18 +32,10 @@ BasicScraping.prototype.echo = function() {
  * callback with the data.
  */
 BasicScraping.prototype.download = function(url, callback) {
-	http.get(url, function(res) {
-		var data = "";
-
-		res.on('data', function(chunk) {
-			data += chunk;
-		});
-
-		res.on("end", function() {
-			callback(data);
-		});
-	}).on("error", function() {
-		callback(null);
+	request(url, function(error, response, body){
+		if(body){
+			callback(body);
+		} else callback(null);
 	});
 };
 
@@ -50,6 +43,7 @@ BasicScraping.prototype.download = function(url, callback) {
  */
 BasicScraping.prototype.getData = function(name, url, dealType, callback) {
 	//var that = this;
+
 	this.download(url, function(data) {
 		if (data) {
 			var $ = cheerio.load(data);
@@ -62,12 +56,12 @@ BasicScraping.prototype.getData = function(name, url, dealType, callback) {
 				"url": url,
 				"dealType": dealType,
 				"img": $("#prod-display").find("img").attr("src"),
-				"desc1": $("#prod-description").find("h1").text().trim(),
-				"desc2": $("#prod-description").find("h2").text().trim(),
-				"desc3": $("#prod-description").find("p").text().trim(),
+				"desc1": $(".prod-hgroup").find("h1").text().trim(),
+				"desc2": $(".prod-subheading").text().trim(),				
+				"desc3": $("div").attr("itemprop", "description").find("p").text().trim(),
 				"item": $(".prod-item").find(".item").first().text().trim() + " " + $(".prod-item").find(".dimensions").first().text().trim(),
 				"type": $(".prod-type").find(".type").first().text().trim(),
-				"msrp": $(".prod-msrp").find(".msrp").first().text().trim(),
+				"msrp": $(".prod-header-price").find(".price-msrp").find(".price-amount").text().trim(),
 				"price": $("tbody").find(".prod-price").first().text().trim()
 			};
 
@@ -94,7 +88,7 @@ BasicScraping.prototype.getWineData = function(name, url, dealType, callback) {
 				"img": $("img.photo").attr("src"),
 				"desc1": $("h2.fn").text().trim(),
 				"desc2": $("#prod-description").find("h2").text().trim(),
-				"desc3": $("#prod-description").find("p").text().trim(),
+				"desc3": $(".inner-excerpt").find("p").text().trim(),
 				"item": $(".prod-item").find(".item").text().trim() + " " + $(".prod-item").find(".dimensions").text().trim(),
 				"type": $(".prod-type").find(".type").text().trim(),
 				"msrp": $("div#summary").find("span.list-price").text().trim(),
@@ -121,14 +115,14 @@ BasicScraping.prototype.getCigarMonster = function(name, url, dealType, callback
 				"name": name,
 				"url": url,
 				"dealType": dealType,
-				"img": $(".mashupitemnoimg", ".mashupitemcrate").find("img").attr("src"),
-				"desc1": $(".mashupitembox", ".mashupitemcrate").find(".mashupitemdes").first().text().trim(),
-				"desc2": $("#prod-description").find("h2").text().trim(),
-				"desc3": $("#prod-description").find("p").text().trim(),
-				"item": $(".prod-item").find(".item").text().trim() + " " + $(".prod-item").find(".dimensions").text().trim(),
+				"img": $(".monsterdealimg").find("img#skupic").attr("src"),
+				"desc1": $(".monsteritemdes").first().text().trim(),
+				"desc2": $(".monsteritemchr").find(".detail-r").eq(5).text(),
+				"desc3": $(".monsterblurb").text().trim(),
+				"item": $(".monsteritemchr").find(".detail-r").eq(1).text(),
 				"type": $(".prod-type").find(".type").text().trim(),
-				"msrp": $(".prod-msrp").find(".msrp").text().trim(),
-				"price": $(".mashupitembox", ".mashupitemcrate").find(".mashupitemprice").first().text().trim()
+				"msrp": $(".monsteritemchr").find(".detail-r").eq(6).text(),
+				"price": $(".monsteritemsalepr").first().text().trim()
 			};
 
 			//console.log(text);
