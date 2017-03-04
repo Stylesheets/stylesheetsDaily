@@ -185,3 +185,4 @@ $RECYCLE.BIN/
 
 # Mac crap
 .DS_Store
+node/node_modules/.bin/express
