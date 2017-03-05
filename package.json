@@ -1,0 +1,20 @@
+{
+  "name": "richdealz",
+  "version": "0.0.1",
+  "description": "App to get deals from various sites",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "apac": "0.0.13",
+    "cheerio": "0.13.1",
+    "cron": "1.0.1",
+    "express": "3.4.7",
+    "jade": "1.11.0",
+    "nib": "1.0.2",
+    "request": "^2.80.0",
+    "stylus": "0.42.0"
+  }
+}
